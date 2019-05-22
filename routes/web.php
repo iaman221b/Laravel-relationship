@@ -24,7 +24,7 @@ Route::get('/show/{id}', 'BlogController@show')->name('show');
 Route::get('/create', 'BlogController@create')->middleware('auth');
 Route::post('/store', 'BlogController@store');
 Route::get('/blog/edit/{id}', 'BlogController@edit')->middleware('auth'); 
-Route::patch('/blog/edit/{id}', 'BlogController@update');
+Route::patch('/blog/edit/{id}', 'BlogController@update')->middleware('CheckUrl');
 Route::post('/logout', 'UserController@logout')->name('logout');
 Route::post('/comment/{id}', 'BlogController@comment')->name('comment');
 Route::get('/user/profile', 'UserController@profile');
@@ -37,6 +37,9 @@ Route::get('task/show', 'TaskController@show');
 Route::get('profile/show', 'ProfileController@show');
 Route::get('/role', 'RoleController@index');
 Route::post('/assign/roles', 'RoleController@store');
+Route::get('/assign/access', 'AssignController@index');
+Route::post('/assign/store', 'AssignController@store');
+
 
 // Route::get('edit/{id}', 'BlogController@');
 

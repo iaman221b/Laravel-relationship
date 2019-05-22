@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use App\Blog;
 use App\Comment;
 use App\User;
+use App\Assign;
+use DB;
 // use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\AuthManager;
+
 
 
 
@@ -65,11 +68,36 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id , Request $request)
     {
+        // $credentials = $request->only('email', 'password');
         $blog = Blog::where('id', $id)->with('comments.user')->first();
+
+        $check = false ;
+        if (Auth::check()) {
+            
+            $role_data = DB::table('assign')
+        ->where('user_id' , auth()->id())->where('blog_id' , $blog->id)->count();
+            if($role_data > 0)
+            {
+                $check = true ;
+            }
+        }
+        // $assigns = Assign::get();
+        // dd($assigns);
+        // foreach ($assigns as $assign) {
+        //     $role_data = DB::table('assign')
+        // ->where('user_id' , $user)->where('blog_id' , $blog->id)->count();
+        // }
+        
+        //  $check = false ;
+        // if($role_data>0)
+        // {
+        //     $check = true;
+        // }
+        // dd($check);
         //  return  $blog;
-        return view('blog.show' , compact('blog') );
+        return view('blog.show' , compact('blog' , 'check') );
     }
 
     /**
@@ -78,10 +106,25 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $blog = Blog::find($id);
-        return view('blog.edit' , compact('blog'));
+    public function edit($id , Request $request)
+    {     $blog = Blog::where('id', $id)->with('comments.user')->first();
+
+        $role_data = DB::table('assign')
+        ->where('user_id' , auth()->id())->where('blog_id' , $blog->id)->count();
+            if($role_data > 0)
+            {
+                $blog = Blog::find($id);
+                return view('blog.edit' , compact('blog'));
+            }
+                else {
+                   
+                    // return redirect("home")->$request->session()->flash('status', 'Task was successful!');
+                    
+                    //  return redirect("home")->flash('status', 'Task was successful!');
+                    return redirect("home")->with('error','We are Anonymous. We are Legion. We do not forgive. We do not forget. Expect us.');
+                    
+                    
+                }
     }
 
    

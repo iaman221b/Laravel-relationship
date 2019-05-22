@@ -7,12 +7,12 @@
 
 
 <div class="container">
-    <form method="POST" action="/assign/roles">
+    <form method="POST" action="/assign/store">
         {{ csrf_field() }}
 <table class="table table-striped">
     <tr>
       <th>Name</th>
-      <th>Roles</th> 
+      <th>Blog Access</th> 
       
     </tr>
     <script>
@@ -20,25 +20,33 @@
     </script>
 
     <tr>
-        @foreach ($users as $user)
-        
-            <td>{{$user->name}}</td>
+       
+            @foreach ($users as $user)
+            <td> 
+                {{$user->name}}
+               
+            </td>
+
+            @foreach ($blogs as $blog)
             <td>
-                @foreach ($roles as $role)
-                    @php
+               
+                    {{$blog->id}}    
+                {{-- @php
                         $isChecked = false;
                         foreach ($user->roles as $key => $user_role) {
                             if ($user_role->pivot->role_id == $role->id) {
                                 $isChecked = true;
                             }
                         }
-                    @endphp
-                    <input type="checkbox" name="roles[{{$user->id}}][]" value="{{$role->id}}" {{$isChecked ? 'checked': ''}}> {{$role->role}}<br> 
+                    @endphp --}}
+                    {{--
+                    <input type="checkbox" name="roles[{{$user->id}}][]" value="{{$role->id}}"> {{$role->role}}<br>  --}}
+                    <input type="checkbox" name="blogs[{{$user->id}}][]" value="{{$blog->id}}">
                 @endforeach
             </td> 
                 
     </tr>
-            @endforeach
+    @endforeach   
         
            
   </table>

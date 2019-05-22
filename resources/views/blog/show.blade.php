@@ -5,8 +5,10 @@
     <div class="container">
     <h3>{{$blog->title}}</h3> <br>
     <p>{{$blog->description}}</p>
+   @if ($check)
+   <a href="/blog/edit/{{$blog->id}}"><button type="button" class="btn btn-primary">Update Post</button></a>
+   @endif
     
-    <a href="/blog/edit/{{$blog->id}}"><button type="button" class="btn btn-primary">Update Post</button></a>
    
     </div>
 <br>

@@ -60,5 +60,9 @@ class User extends Authenticatable
       
         return $this->belongsToMany('App\Role', 'role_user');
     }
+    
+    public function blogs(){
+        return $this->belongsToMany('App\Blog' , 'assign');
+    }
       
 }

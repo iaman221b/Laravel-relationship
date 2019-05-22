@@ -13,7 +13,7 @@
 <body>
        
 
-        
+    @include('flash-message')
             <div class="header">
                 <a href="/home" class="logo">Welcome to my blog</a>
                 <div class="header-right">

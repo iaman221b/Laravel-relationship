@@ -53,7 +53,8 @@ class UserController extends Controller
             'password' => ['required', 'min:3' , 'max:255'] 
         ]);
 
-        $attributes['password'] = bcrypt( request('password'));
+        $attributes['password'] = bcrypt( request('password'));  
+
 
         User::create($attributes);
             return redirect('/user/login');

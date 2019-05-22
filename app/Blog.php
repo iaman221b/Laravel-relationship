@@ -16,5 +16,8 @@ class Blog extends Model
     public function comments(){
         return $this->hasMany('App\Comment' , 'blog_id');
     }
+    public function users(){
+        return $this->belongsToMany('App\User' , 'assign');
+    }
 }
 
