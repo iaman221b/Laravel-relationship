@@ -1,14 +1,12 @@
 @extends('layouts.app')
-    @section('content')
+@section('content')
 
-        @foreach ($categories as $category)
-            <br><b> {{$category->category}} </b>
-        
-            @foreach ($category->products as $product)
-                <br>
-                {{$product->product_name}}
-            @endforeach
-         @endforeach
-
-
-    @endsection
+    @foreach ($categories as $category)
+        <br><b> {{$category->category}} </b>
+    
+        @foreach ($category->products as $product)
+            <br>
+            {{$product->product_name}}
+        @endforeach
+    @endforeach
+@endsection

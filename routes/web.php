@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/user/create', 'UserController@create');
 Route::post('user/store', 'UserController@store');
-Route::get('user/login', 'UserController@login');
+Route::get('user/login', 'UserController@login')->name('login');
 Route::post('user/authenticate', 'UserController@authenticate');
 Route::get('/home', 'BlogController@index')->name('home');
 Route::get('/show/{id}', 'BlogController@show')->name('show');
@@ -43,6 +43,9 @@ Route::get('/product', 'ProductController@index');
 Route::get('/tag', 'TagController@index');   
 Route::post('/tag/store', 'TagController@store'); 
 Route::get('/tag/show', 'TagController@show');  
+Route::get('/friends', 'FriendsController@index'); 
+Route::post('/friends/requested', 'FriendsController@store'); 
+Route::get('/friends/requested/show', 'FriendsController@show'); 
 
 
 // Route::get('edit/{id}', 'BlogController@');
