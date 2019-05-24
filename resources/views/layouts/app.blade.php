@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -9,82 +9,43 @@
     <link href="{{ asset('css/header/header.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/footer/footer.css')}}" rel="stylesheet" type="text/css" />
     <title>@yield('title' , 'Default Title')</title>
-</head>
-<body>
-       
-
+  </head>
+  <body>
     @include('flash-message')
-            <div class="header">
-                <a href="/home" class="logo">Welcome to my blog</a>
-                <div class="header-right">
-                  <a class="active" href="/home">Home</a>
-                  @if (!Auth::check())
-                  <a href="/user/create">Sign Up</a>
-                  <a href="/user/login">Login</a>
-                 
-                  @endif
-                  @if (Auth::check())
-                  {{-- <a href="{{route('logout')}}">Logout</a> --}}
-                  
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                        
-                    </form> 
-                    <a onclick="event.preventDefault()
-                     document.getElementById('logout-form').submit();">
-                     Logout
-                     <a href="/user/profile">Profile</a>
-                    
-                    </a>
-
-                   
-                  @endif
-                </div>
-            </div>
-        {{-- </div> --}}
-              {{-- <br>
-              <br> --}}
-        @yield('content')
-        {{-- <br>
-        <br>
-        <br>
-        <br>
-        <br> --}}
-        {{-- style="padding-top:20%;" --}}
-        {{-- <div>
-          @if (Auth::check()){
-           <textarea>This is for Comments</textarea>
-          }
-        </div> --}}
-        {{-- @endif --}}
-        {{-- <br>
-        <br>
-        <br>
-        <br> --}}
-        {{-- <div>
-          @if (Auth::check())
-                  <form method="POST" action="/comment/{{$blog->id}}">
-                      {{ csrf_field() }}
-              <textarea name = "comments" rows="4" cols="100">This is for Comments</textarea>
-              <br>
-              <button>Submit</button>
-              <form>
-             
-             @endif
-      </div> --}}
+    <div class="header">
+      <a href="/home" class="logo">Welcome to my blog</a>
+      <div class="header-right">
+      <a class="active" href="/home">Home</a>
+      @if (!Auth::check())
+        <a href="/user/create">Sign Up</a>
+        <a href="/user/login">Login</a>        
+      @endif
+      @if (Auth::check())
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          @csrf
+        </form> 
+      <a onclick="event.preventDefault()
+      document.getElementById('logout-form').submit();">
+      Logout
+      <a href="/user/profile">Profile</a>                    
+      </a>
+      @endif
+      </div>
+    </div>    
+    @yield('content')        
       <br>
       <br>
       <br>
       <br>
       <br>
-        <br>
-        <br>
-        <br>
+      <br>
+      <br>
+      <br>
         <div class="footer">
-                <p>Scoop Whoop</p>
-                <p>Best blog ever made</p>
-  <p>Contact information: <a href="mailto:someone@example.com">
-  amant@bluelupin.com</a>.</p>
-              </div>
-</body>
+          <p>Scoop Whoop</p>
+          <p>Best blog ever made</p>
+          <p>Contact information: <a href="mailto:someone@example.com">
+          amant@bluelupin.com</a>.</p>
+        </div>
+    </body>
 </html>

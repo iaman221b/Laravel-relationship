@@ -39,6 +39,10 @@ Route::get('/role', 'RoleController@index');
 Route::post('/assign/roles', 'RoleController@store');
 Route::get('/assign/access', 'AssignController@index');
 Route::post('/assign/store', 'AssignController@store');
+Route::get('/product', 'ProductController@index');  
+Route::get('/tag', 'TagController@index');   
+Route::post('/tag/store', 'TagController@store'); 
+Route::get('/tag/show', 'TagController@show');  
 
 
 // Route::get('edit/{id}', 'BlogController@');

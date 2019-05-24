@@ -18,6 +18,7 @@ class RoleController extends Controller
         // return view('Role.index' , compact('user'));
         // // dd($user->roles);
         $users =  User::with('roles')->get();
+        // return $users; 
     //    $users =  User::get();
        $roles = Role::get();
     //    return $users ;
@@ -29,7 +30,7 @@ class RoleController extends Controller
 
     public function store(Request $request){ 
         $rolesData = $request->roles;
-        return $rolesData;
+        // return $rolesData;
         $inserDatas = [];
         foreach ($rolesData as $userId => $roles) {
             foreach ($roles as $key => $role) {
@@ -56,6 +57,3 @@ class RoleController extends Controller
 }
 
 
-foreach ($variable as $key => $value) {
-    # code...
-}
