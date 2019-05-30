@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\user;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Profile;
+use Illuminate\Hashing\BcryptHasher;
+use Hash;
+use  Illuminate\Validation\Validator  ;
+use DB;
 
 class UserController extends Controller
 {
@@ -72,7 +76,7 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $user = auth()->user();
             // request()->filled('remember');
-            if($user->email==('george2@gmail.com'))
+            if($user->email==('vipinkumar@gmail.com'))
             return redirect()->intended('/create');
             // dd("Admin");
             
@@ -139,6 +143,42 @@ class UserController extends Controller
         $attributes['user_id'] = auth()->id();
         $profile = Profile::create($attributes);
         return redirect("/home");
+    }
+
+    public function change_password(){
+        return view('user.change_password');
+    }
+
+    public function update_password( Request $request ){
+        $user = User::where('id' , auth()->id())->first();
+        // $oldPassword = User::get('password');
+        // return $oldPassword;
+        // return $user;
+        $pass =  request()->validate([
+            'password' => ['required', 'min:3' , 'max:255'] ,
+            'new_password' => ['required', 'min:3' , 'max:255'] ,           
+        ]);
+        // $new_pass =  $pass->new_password;
+        // return $new_pass;
+
+        // return $pass;
+        // if (Hash::check('passwordToCheck', $user->getAuthPassword())) 
+       
+        if(Hash::check($request->password, $user->password)) {
+            $user->update(['password' => bcrypt($request->new_password)]);
+            Auth::logout();
+        }                          
+        else{
+            dd("Incorrect Password");
+        }
+
+
+        // $validator->after(function ($validator) {
+        //     if ( !Hash::check($this->current_password, $this->user()->password) ) {
+        //         $validator->errors()->add('current_password', 'Your current password is incorrect.');
+        //     }
+        // });
+        return redirect('/user/login');
     }
 
    

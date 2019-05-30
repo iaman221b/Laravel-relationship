@@ -18,7 +18,8 @@
       <a class="active" href="/home">Home</a>
       @if (!Auth::check())
         <a href="/user/create">Sign Up</a>
-        <a href="/user/login">Login</a>        
+        <a href="/user/login">Login</a>
+        <a href="/event/show">Book Event</a>        
       @endif
       @if (Auth::check())
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -27,12 +28,16 @@
       <a onclick="event.preventDefault()
       document.getElementById('logout-form').submit();">
       Logout
-      <a href="/user/profile">Profile</a>                    
+      <a href="/user/profile">Profile</a>  
+      <a href="/event/show">Book Event</a>  
+      <a href="/user/change/password">Change Password</a>                   
       </a>
       @endif
       </div>
     </div>    
-    @yield('content')        
+    <div class="container"> @yield('content')  
+    </div>
+         
       <br>
       <br>
       <br>

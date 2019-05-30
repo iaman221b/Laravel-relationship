@@ -64,5 +64,14 @@ class User extends Authenticatable
     public function blogs(){
         return $this->belongsToMany('App\Blog' , 'assign');
     }
+
+    public function carts(){
+        return $this->hasMany('App\Cart', 'user_id');
+    }
+
+    public function friends()
+    {
+        return $this->belongsToMany('App\User','user_friend');
+    }
       
 }

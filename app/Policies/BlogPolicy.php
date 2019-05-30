@@ -17,9 +17,13 @@ class BlogPolicy
      * @param  \App\Blog  $blog
      * @return mixed
      */
-    public function view(User $user, Blog $blog)
+    public function view(User $user)
     {
-        //
+        
+        if($user->email == "vipinkumar@gmail.com")
+        return true;
+        else 
+        return false;
     }
 
     /**
@@ -30,7 +34,10 @@ class BlogPolicy
      */
     public function create(User $user)
     {
-        //
+        if($user->email == "vipinkumar@gmail.com")
+        return true;
+        else 
+        return false;
     }
 
     /**
@@ -50,6 +57,8 @@ class BlogPolicy
             return false;
     }
 
+    
+
     /**
      * Determine whether the user can delete the blog.
      *
@@ -57,6 +66,8 @@ class BlogPolicy
      * @param  \App\Blog  $blog
      * @return mixed
      */
+   
+
     public function delete(User $user, Blog $blog)
     {
         //

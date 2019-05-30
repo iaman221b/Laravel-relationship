@@ -35,5 +35,15 @@ class FriendsController extends Controller
        DB::table('friends')->insert($requestlist);
        return redirect('/home');
     }
+
+
+
+    public static function createFriends()
+    {
+        $friendIds = ['3','4','5'];
+        $user= User::find(1);
+        $user->friends()->create($friendIds);
+        return $user;
+    }
     }
    

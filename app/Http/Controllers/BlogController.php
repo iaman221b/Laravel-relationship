@@ -21,11 +21,14 @@ class BlogController extends Controller
         return view('blog.index' , compact('blogs'));
     }
 
-    public function create()
+    public function create(Blog $blog)
     {
-        
+        if($this->authorize('create', $blog)){
         $blog = Blog::all();
         return view('blog.create');
+        }
+        else
+        return redirect("home")->with('error','We are Anonymous. We are Legion. We do not forgive. We do not forget. Expect us.');
     }
    
     public function store(Request $request)
@@ -88,9 +91,19 @@ class BlogController extends Controller
         return redirect("/home");
     }
 
+    public function show_event(){
+        $user = User::with('carts')->get();
+        $blog = Blog::all();
+        if ($user->can('update', $post)){
+            dd("show posts");
+        }
+    }
+
+
     public function destroy($id)
     {
         
     }
    
 }
+

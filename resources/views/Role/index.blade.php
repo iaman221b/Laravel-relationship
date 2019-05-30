@@ -5,9 +5,9 @@
         <div class="container">
             <form method="POST" action="/assign/roles">
                 {{ csrf_field() }}
-                <table class="table table-striped">
+                <table class="table table-striped"> 
                     <tr>
-                        <th>Name</th>
+                        <th>Name</th> 
                         <th>Roles</th> 
                     </tr>
                     <script>
