@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\User;
 
 class test
 {
@@ -15,11 +16,23 @@ class test
      */
     public function handle($request, Closure $next)
     {
-        $ip = $request->ip();
-        if($ip == '127.0.0.1:8000'){
-            throw new \Exception("Your IP is correct");
+        // $ip = $request->ip();
+        // info($ip);
+        // if($ip == "127.0.0.1:8000"){
+        //     info($ip);
+        //    abort(403);
+        // }
+        // abort(403);
+
+        $user = auth()->user();
+          
+        if($user and $user->email == "george2@gmail.com"){
+            return $next($request);
+        }else {
+            abort(403);
         }
-        return $next($request);
+       
+       
        
     }
 }

@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 Route::get('/user/change/password', 'UserController@change_password');
 Route::post('/user/update/password', 'UserController@update_password');
-Route::get('/user/create', 'UserController@create');
+Route::get('/user/create', 'UserController@create')->middleware('test');
 Route::post('user/store', 'UserController@store');
 Route::get('user/login', 'UserController@login')->name('login');
 Route::post('user/authenticate', 'UserController@authenticate');
@@ -36,7 +36,7 @@ Route::get('/task/create', 'TaskController@create');
 Route::post('task/store', 'TaskController@store');
 Route::get('task/show', 'TaskController@show');
 Route::get('profile/show', 'ProfileController@show');
-Route::get('/role', 'RoleController@index')->middleware('test');
+Route::get('/role', 'RoleController@index');
 Route::post('/assign/roles', 'RoleController@store');
 Route::get('/assign/access', 'AssignController@index');
 Route::post('/assign/store', 'AssignController@store');
@@ -59,6 +59,13 @@ Route::get('/post', 'PostController@index');
 Route::get('/store/like/{id}', 'PostController@store');  
 
 Route::get('/events/all', 'EventController@show_event');
+Route::get('/article', 'ArticleController@index');  
+Route::get('/article/create', 'ArticleController@create'); 
+Route::post('/article/store', 'ArticleController@store'); 
+Route::get('/article/book/{article}', 'ArticleController@show'); 
+Route::post('/article/buy/{article}', 'ArticleController@buy'); 
+Route::post('/article/delete/{article}', 'ArticleController@destroy'); 
+
 // Route::get('edit/{id}', 'BlogController@');
 
 

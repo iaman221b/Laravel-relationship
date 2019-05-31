@@ -30,7 +30,8 @@
       Logout
       <a href="/user/profile">Profile</a>  
       <a href="/event/show">Book Event</a>  
-      <a href="/user/change/password">Change Password</a>                   
+      <a href="/user/change/password">Change Password</a>  
+      <a href="/article/create">Dashboard</a>                    
       </a>
       @endif
       </div>

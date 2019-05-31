@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use Illuminate\Http\Request;
 use App\Cart;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth; 
 use DB;
 use App\User;
 use App\Blog;
@@ -21,12 +21,11 @@ class EventController extends Controller
     public function index()
     {
         $events =   Event::with('carts')->get();
-        $events = $events->map(function ($event, $index) {
-            $islogin = false;
-            if (Auth::check()){
-                $islogin = true;
-            }
-
+        $islogin = false;
+        if (Auth::check()){
+            $islogin = true;
+        }
+        $events = $events->map(function ($event, $index) {           
             $isShowBuyButton = true;
             if (Auth::check()) {
                 $cart = $event->carts->where('user_id', auth()->id())->first();
